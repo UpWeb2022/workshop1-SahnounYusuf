@@ -8,7 +8,8 @@ import {Product} from "../model/product";
 })
 export class ListProductComponent implements OnInit {
   public titleApp: string;
-  public  name: string;
+  public name: string;
+  public priceMax = 120;
   public listProduct: Product[];
 
   constructor() {
@@ -40,12 +41,25 @@ export class ListProductComponent implements OnInit {
         title: 'T-shirt 3',
         price: 145,
         description: 'made with love',
-        quantity: 756,
+        quantity: 2,
         picture: 'https://i5.walmartimages.com/asr/f451ab76-9e31-4436-9578-422e1dfb744c_1.16c7b00bb3fb3c24d1e967276b26d538.jpeg',
         like: 10
       }
     ]
   }
 
+  public incrementLike(p: Product): void {
+    let i = this.listProduct.indexOf(p);
+    if(i!=-1) {
+      this.listProduct[i].like++;
+    }
+  }
+
+  public buyProduct(p: Product): void {
+    let i = this.listProduct.indexOf(p);
+    if(i!=-1) {
+      this.listProduct[i].quantity--;
+    }
+  }
 
 }
